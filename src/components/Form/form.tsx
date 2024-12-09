@@ -1,7 +1,6 @@
+import React from "react";
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Upload } from "antd";
-import React from "react";
-
 import { FormDataType, qwerty } from "../../Types/data-types";
 
 export const ReusableForm: React.FC<FormDataType> = ({
@@ -15,11 +14,10 @@ export const ReusableForm: React.FC<FormDataType> = ({
     if (submit) {
       submit({
         title: value.title,
-        image: value.image && value?.image?.fileList[0]?.originFileObj,
+        image: value.image ? value.image[0].originFileObj : null,
       });
     }
   };
-
   return (
     <>
       {!isLoading && (
@@ -30,25 +28,25 @@ export const ReusableForm: React.FC<FormDataType> = ({
           form={form}
         >
           <Form.Item
-            label="Title"
-            name="title"
-            rules={[{ required: true, message: "Title kiriting" }]}
+            label={"Title"}
+            name={"title"}
+            rules={[{ required: true, message: "title kiriting" }]}
           >
             <Input placeholder="Title" />
           </Form.Item>
           <Form.Item
-            label="Image"
-            name="image"
-            valuePropName="fileList"
-            getValueFromEvent={(e) => (Array.isArray(e) ? e : e?.fileList)}
-            rules={[{ required: true, message: "Image kiriting" }]}
+            label={"img"}
+            name={"image"}
+            valuePropName="file"
+            rules={[{ required: true, message: "img kiriting" }]}
           >
             <Upload
+              style={{ width: "300px" }}
               listType="picture-card"
               beforeUpload={() => false}
               accept="image/*"
               maxCount={1}
-              defaultFileList={defaultFileList}
+              defaultFileList={defaultFileList && defaultFileList}
             >
               <Button type="primary" icon={<UploadOutlined />}>
                 Upload
