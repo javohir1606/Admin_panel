@@ -1,70 +1,65 @@
-import { Button, Form, Input, Upload, UploadFile } from "antd"
-import { initialValuesType } from "../../pages/service/editCategory";
+import { UploadOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Upload } from "antd";
+import React from "react";
 
-interface formType {
-  onFinish?: (values: any) => void,
-  isLoding: boolean,
-  isEdit: boolean,
-  form?: any
-  initialValues?: initialValuesType
-}
-
-export const FormCategory = ({ onFinish, form, isLoding,initialValues, isEdit }: formType) => {
-
-  const defaultFileList: UploadFile[] = [
-    {
-      uid: "-1",
-      name: `${initialValues?.title}`,
-      status: "done",
-      url: `${initialValues?.image}`,
-    },
-  ];
-
-  if(initialValues &&initialValues?.title == undefined) return <div>Loading...</div>
-
+import { FormDataType, qwerty } from "../../Types/data-types";
+export const ReusableForm: React.FC<FormDataType> = ({
+  submit,
+  form,
+  data,
+  isLoading,
+  defaultFileList,
+}) => {
+  const handleSubmit = (value: qwerty) => {
+    if (submit) {
+      submit({
+        title: value.title,
+        image: value.image ? value.image[0].originFileObj : null,
+      });
+    }
+  };
   return (
-    <div>
-      {isLoding ? (
-        <h1>Loding.....</h1>
-      ) : (
+    <>
+      {!isLoading && (
         <Form
-          initialValues={{title: initialValues?.title}}
           layout="vertical"
+          initialValues={{ ...data }}
+          onFinish={handleSubmit}
           form={form}
-          onFinish={onFinish}
-          style={{ maxWidth: 500, margin: "0 auto", padding: 20,marginLeft:"-10px" }}
         >
           <Form.Item
-            label="Title"
-            name="title"
-            rules={[{ required: true, message: "Please input the title!" }]}
+            label={"Title"}
+            name={"title"}
+            rules={[{ required: true, message: "title kiriting" }]}
           >
-            <Input placeholder="Enter category title" />
+            <Input placeholder="Title" />
           </Form.Item>
-
           <Form.Item
-            label="Image"
-            name="image"
+            label={"img"}
+            name={"image"}
             valuePropName="file"
+            rules={[{ required: true, message: "img kiriting" }]}
           >
             <Upload
+              style={{ width: "500px" }}
+              listType="picture-card"
               beforeUpload={() => false}
-              accept="image"
+              accept="image/*"
               maxCount={1}
-              listType="picture"
-              defaultFileList={isEdit ? defaultFileList : []}
+              defaultFileList={defaultFileList && defaultFileList}
             >
-              <Button>Upload Image</Button>
+              <Button type="primary" icon={<UploadOutlined />}>
+                Upload
+              </Button>
             </Upload>
           </Form.Item>
-
           <Form.Item>
-            <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
-              Add Category
+            <Button htmlType="submit" type="primary">
+              Send
             </Button>
           </Form.Item>
         </Form>
       )}
-    </div>
-  )
-}
+    </>
+  );
+};

@@ -6,9 +6,9 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { client } from "./config/query-client.ts";
 
 createRoot(document.getElementById("root")!).render(
-  <QueryClientProvider client={client}>
-    <BrowserRouter>
+  <BrowserRouter>
+    <QueryClientProvider client={client}>
       <App />
-    </BrowserRouter>
-  </QueryClientProvider>
+    </QueryClientProvider>
+  </BrowserRouter>
 );
