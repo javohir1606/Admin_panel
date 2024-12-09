@@ -15,7 +15,7 @@ export const ReusableForm: React.FC<FormDataType> = ({
     if (submit) {
       submit({
         title: value.title,
-        image: value.image && value.image.fileList[0]?.originFileObj,
+        image: value.image && value?.image?.fileList[0]?.originFileObj,
       });
     }
   };

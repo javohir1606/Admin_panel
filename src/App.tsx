@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { RoutersData } from "./Router/router";
-import { Login } from "./Pages/Login";
 import { MainLayout } from "./Layout";
+import { Login } from "./pages/Login";
 function App() {
   return (
     <>

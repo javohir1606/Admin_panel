@@ -4,15 +4,15 @@ import { PhoneOutlined, LockOutlined } from "@ant-design/icons";
 import { useForm,Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"
-import { usLoginGet } from "../../Service/Mutation/useLogin";
 import { useLoginType } from "../../Service/Mutation/useLoginType";
+import { useLogin } from "../../Service/Mutation/useLogin";
 
 const { Title } = Typography;
 
 export const Login: React.FC = () => {
   const { control, handleSubmit } = useForm<useLoginType>();
   const navigate = useNavigate();
-  const {mutate}= usLoginGet()
+  const {mutate}= useLogin()
 
   const onSubmit = (data:any) => {
     mutate(data, {
