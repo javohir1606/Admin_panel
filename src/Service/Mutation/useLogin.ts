@@ -1,10 +1,14 @@
-import { useMutation } from "@tanstack/react-query";
-import { request } from "./../../Config/request";
-import { useLoginType } from "./useLoginType";
+import { useMutation } from '@tanstack/react-query';
+import Cookies from 'js-cookie';
+import { request } from '../../Config/request';
+export const usLoginGet = () => {
+  return (
+     useMutation({
+      mutationFn: (data)=> request.post("/api/admin-login/",data).then((res) => res.data),
+      onSuccess: (res) => {
+        Cookies.set( "accessToken", res?.data?.token)
+      },
+     })
+  )
+}
 
-export const useLogin = () => {
-  return useMutation({
-    mutationFn: (data: useLoginType) =>
-      request.post("/api/admin-login/", data).then((res) => res.data),
-  });
-};
