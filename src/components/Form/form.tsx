@@ -11,10 +11,11 @@ export const ReusableForm: React.FC<FormDataType> = ({
   defaultFileList,
 }) => {
   const handleSubmit = (value: qwerty) => {
+    
     if (submit) {
       submit({
         title: value.title,
-        image: value.image ? value.image[0].originFileObj : null,
+        image: value.image ? value.image : null,
       });
     }
   };

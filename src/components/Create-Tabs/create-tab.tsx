@@ -23,7 +23,7 @@ export const CreateTabCategory = () => {
     if (values.image) {
       formData.append("image", values.image.file);
     }
-
+    
     mutate(formData, {
       onSuccess: () => {
         message.success("Category added successfully!");
