@@ -103,7 +103,7 @@ export const CategoryEditTab = () => {
         <Flex gap={"20px"} justify="center">
           <div>
             <Link to={`/app/edit-category/${record.id}`}>
-              <Button type="primary" style={{ backgroundColor: "#f1cf0f" }}>
+              <Button type="primary" style={{ backgroundColor: "green" }}>
                 Edit
               </Button>
             </Link>

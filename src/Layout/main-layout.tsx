@@ -27,9 +27,8 @@ export const MainLayout: React.FC = () => {
   return (
     <Layout>
       <Sider
-        width={400}
+        width={300}
         trigger={null}
-        // style={{ overflowY: "hidden" }}
         collapsible
         collapsed={collapsed}
       >

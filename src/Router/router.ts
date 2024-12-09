@@ -1,13 +1,13 @@
-import { CategoryList } from "../Pages/Category-list";
-import { SubCategoryList } from "../Pages/Sub-Category-List/sub-cotegory-list";
 import React from "react";
 import { nanoid } from "nanoid";
-import { BrandList } from "../Pages/Brand-List";
-import { Product } from "../Pages/Product";
-import { CreateTabCategory } from "../Components/Create-Tabs";
-import { CreateSubTabCategory } from "../Components/Create-Sub-Category-Tab";
-import { CategoryEditTab } from "../Components/Category-Edit-Tab";
-import { SubEditTab } from "../Components/Sub-Edit-Tab";
+import { BrandList } from "../pages/Brand-List";
+import { CategoryList } from "../pages/Category-list";
+import { SubCategoryList } from "../pages/Sub-Category-List";
+import { Product } from "../pages/Product";
+import { CreateTabCategory } from "../components/Create-Tabs";
+import { CategoryEditTab } from "../components/Category-Edit-Tab";
+import { CreateSubTabCategory } from "../components/Create-Sub-Category-Tab";
+import { SubEditTab } from "../components/Sub-Edit-Tab";
 
 interface RouteType {
   component: React.FC;
