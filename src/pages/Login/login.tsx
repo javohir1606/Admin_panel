@@ -1,9 +1,18 @@
 import React from "react";
-import { Form, Input, Button, Typography, Row, Col, Space, message } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Typography,
+  Row,
+  Col,
+  Space,
+  message,
+} from "antd";
 import { PhoneOutlined, LockOutlined } from "@ant-design/icons";
-import { useForm,Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 import { useLoginType } from "../../Service/Mutation/useLoginType";
 import { useLogin } from "../../Service/Mutation/useLogin";
 
@@ -12,22 +21,22 @@ const { Title } = Typography;
 export const Login: React.FC = () => {
   const { control, handleSubmit } = useForm<useLoginType>();
   const navigate = useNavigate();
-  const {mutate}= useLogin()
+  const { mutate } = useLogin();
 
-  const onSubmit = (data:any) => {
+  const onSubmit = (data: useLoginType) => {
+    console.log("Submitting Data:", data);
+
     mutate(data, {
       onSuccess: (res) => {
-        Cookies.set("accessToken", res?.token)
-        console.log(res);
-        
-        message.success("Login successfully")
-        navigate("/app")
+        Cookies.set("Token", res.token);
+        message.success("Welcome");
+        navigate("/app", { replace: true });
       },
-      onError: (error) => {
-        message.error(error.message)
-      }
-    })
-
+      onError: (err) => {
+        console.error("Login Error:", err);
+        message.error("Invalid login credentials");
+      },
+    });
   };
 
   return (
@@ -90,6 +99,7 @@ export const Login: React.FC = () => {
                 />
               </Form.Item>
 
+              {/* Submit Button */}
               <Form.Item>
                 <Button
                   type="primary"
@@ -106,4 +116,3 @@ export const Login: React.FC = () => {
     </Row>
   );
 };
-
