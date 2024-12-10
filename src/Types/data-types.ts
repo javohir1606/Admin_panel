@@ -1,3 +1,4 @@
+import { Image } from 'antd';
 import { RcFile } from "antd/es/upload";
 import React from "react";
 
@@ -50,6 +51,13 @@ export interface columnType {
   align?: any;
   fontWeight?: any;
   render?: any;
+}
+
+export interface BrandType{
+  id: number;
+  key:number;
+  image:string;
+  title: string;
 }
 export interface TabPropsTypes {
   key: string;
