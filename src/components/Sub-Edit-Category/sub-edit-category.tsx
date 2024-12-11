@@ -1,9 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEditCategory } from "../../Service/Mutation/useEditCategory";
-import { useGetSingleData } from "../../Service/Query/useGetSingleData";
 import { FormDatas } from "../../Types/data-types";
 import { message, UploadFile } from "antd";
 import { ReusableForm } from "../Form";
+import { useGetSingleData } from "../../Service/Query/useGetSingleData";
 
 export const SubEditCategory = () => {
   const { id } = useParams();
