@@ -16,7 +16,6 @@ export const SubEditCategory = () => {
   const submit = (data: FormDatas) => {
     const formData = new FormData();
     formData.append("title", data.title);
-    // formData.append("parent", data.parent);
 
     if (data.image) {
       formData.append("image", data.image.file);

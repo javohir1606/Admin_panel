@@ -118,7 +118,6 @@ export const CategoryEditTab = () => {
               title={"Do you wish to continue with past date?"}
             >
               <Button
-                // onClick={() => DeleteCategory(record.id)}
                 type="primary"
                 style={{ backgroundColor: "red" }}
               >
