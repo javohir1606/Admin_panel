@@ -80,7 +80,10 @@ export const CategoryList = () => {
         <Flex gap={"20px"} justify="center">
           <div>
             <Link to={`/app/edit-category/${record.id}`}>
-              <Button type="primary" style={{ backgroundColor: "#f1cf0f" }}>
+              <Button
+                type="primary"
+                style={{ backgroundColor: "green", fontSize: "20px" }}
+              >
                 Edit
               </Button>
             </Link>
@@ -95,9 +98,8 @@ export const CategoryList = () => {
               title={"Do you wish to continue with past date?"}
             >
               <Button
-                // onClick={() => DeleteCategory(record.id)}
                 type="primary"
-                style={{ backgroundColor: "red" }}
+                style={{ backgroundColor: "red", fontSize: "20px" }}
               >
                 Delete
               </Button>

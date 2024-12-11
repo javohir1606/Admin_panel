@@ -8,7 +8,6 @@ import { useQueryClient } from "@tanstack/react-query";
 export const SubCategoryList = () => {
   const { data } = useGetSubCategory();
 
-  
   const { mutate } = useDeleteData();
   const client = useQueryClient();
   const dataSource = data?.results.map((item: Datas) => {
@@ -85,7 +84,10 @@ export const SubCategoryList = () => {
         <Flex gap={"20px"} justify="center">
           <div>
             <Link to={`/app/sub-edit-category/${record.id}`}>
-              <Button type="primary" style={{ backgroundColor: "#f1cf0f" }}>
+              <Button
+                type="primary"
+                style={{ backgroundColor: "green", fontSize: "20px" }}
+              >
                 Edit
               </Button>
             </Link>
@@ -100,9 +102,8 @@ export const SubCategoryList = () => {
               title={"Do you wish to continue with past date?"}
             >
               <Button
-                // onClick={() => DeleteCategory(record.id)}
                 type="primary"
-                style={{ backgroundColor: "red" }}
+                style={{ backgroundColor: "red", fontSize: "20px" }}
               >
                 Delete
               </Button>
@@ -120,13 +121,7 @@ export const SubCategoryList = () => {
           <Button type="primary">Create</Button>
         </Link>
       </div>
-      <Table
-        dataSource={dataSource}
-        columns={columns}
-        bordered
-        size="large"
-        // pagination={false}
-      />
+      <Table dataSource={dataSource} columns={columns} bordered size="large" />
     </>
   );
 };
