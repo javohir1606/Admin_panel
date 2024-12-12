@@ -6,34 +6,35 @@ import { useBrandGetType } from "../../Service/Query/useBrandGetType";
 import { useBrandDeleteData } from "../../Service/Mutation/useBrandDeleteData";
 
 export const BrandList = () => {
+  // Ma'lumotlarni olish
   const { data } = useBrandGetType();
 
-  const dataSource = data?.results.map((item: BrandType) => {
-    return {
-      key: item.id,
-      id: item.id,
-      img: item.image,
-      title: item.title,
-    };
-  });
+  // DataSourceni yaratish
+  const dataSource = data?.results.map((item: BrandType) => ({
+    key: item.id,
+    id: item.id,
+    img: item.image,
+    title: item.title,
+  }));
 
+  // O'chirish funksiyasi
   const { mutate } = useBrandDeleteData();
-
   const client = useQueryClient();
+
   const DeleteCategory = (id: number) => {
     mutate(id, {
       onSuccess: () => {
-        message.success("success");
+        message.success("Category deleted successfully");
         client.invalidateQueries({ queryKey: ["get-data"] });
       },
       onError: (error) => {
-        console.log(error);
-
+        console.error("Error deleting category:", error);
         message.error("Error occurred during delete");
       },
     });
   };
 
+  // Kolonkalarning konfiguratsiyasi
   const columns: columnType[] = [
     {
       title: "ID",
@@ -53,7 +54,7 @@ export const BrandList = () => {
               width: "70px",
             }}
             src={image}
-            alt="#"
+            alt="Brand"
           />
         </div>
       ),
@@ -70,15 +71,14 @@ export const BrandList = () => {
       ),
     },
     {
-      title: "Change",
-      dataIndex: "change",
-      key: "action",
+      title: "Actions",
+      dataIndex: "actions",
+      key: "actions",
       align: "center",
-      width: "25%",
       render: (_: any, record: BrandType) => (
-        <Flex gap={"20px"} justify="center">
+        <Flex gap="20px" justify="center">
           <div>
-            <Link to={`/app/edit-category/${record.id}`}>
+            <Link to={`/app/edit-brand/${record.id}`}>
               <Button
                 type="primary"
                 style={{ backgroundColor: "#048b04", fontSize: "20px" }}
@@ -89,14 +89,10 @@ export const BrandList = () => {
           </div>
           <div>
             <Popconfirm
-              onConfirm={() => {
-                console.log(record.id);
-
-                return DeleteCategory(record.id);
-              }}
-              cancelText={"No"}
-              okText={"Yes"}
-              title={"Do you wish to continue with past date?"}
+              title="Do you want to delete this brand?"
+              onConfirm={() => DeleteCategory(record.id)}
+              okText="Yes"
+              cancelText="No"
             >
               <Button
                 type="primary"
@@ -112,13 +108,21 @@ export const BrandList = () => {
   ];
 
   return (
-    <>
+    <div>
       <div style={{ marginBottom: "20px" }}>
-        <Link to={"/app/create-brand"}>
-          <Button type="primary">Create</Button>
+        {/* Yangi brend qo'shish uchun tugma */}
+        <Link to="/app/create-brand">
+          <Button type="primary">Create Brand</Button>
         </Link>
       </div>
-      <Table dataSource={dataSource} columns={columns} bordered size="large" />
-    </>
+      {/* Jadvalni ko'rsatish */}
+      <Table
+        dataSource={dataSource}
+        columns={columns}
+        bordered
+        size="large"
+        pagination={{ pageSize: 10 }}
+      />
+    </div>
   );
 };

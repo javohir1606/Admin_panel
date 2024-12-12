@@ -1,17 +1,17 @@
 import { Tabs } from "antd";
 import { ReusableForm } from "../Form";
 import { useParams, useNavigate } from "react-router-dom";
-import { useEditCategory } from "../../Service/Mutation/useEditCategory";
 import { useGetSingleData } from "../../Service/Query/useGetSingleData";
 import { FormDatas } from "../../Types/data-types";
 import { message, UploadFile } from "antd";
 import { AttributeForm } from "../Create-Attribute";
+import { useBrandCategory } from "../../Service/Mutation/useBrandEdit";
 
-export const SubEditTab = () => {
+export const BrandEdit = () => {
   const { id } = useParams();
   const { data: singleData, isLoading } = useGetSingleData(id);
 
-  const { mutate } = useEditCategory();
+  const { mutate } = useBrandCategory();
   const navigate = useNavigate();
 
   const submit = (data: FormDatas) => {
