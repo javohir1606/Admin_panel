@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { request } from "../../config/request";
 
-export const useDeleteData = () => {
+export const useBrandDeleteData = () => {
   return useMutation({
     mutationFn: (id: number) =>
-      request.delete(`/category/${id}/`).then((res) => res.data),
+      request.delete(`/brand/${id}/`).then((res) => res.data),
   });
 };

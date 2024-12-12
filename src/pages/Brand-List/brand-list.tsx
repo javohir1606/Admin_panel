@@ -1,9 +1,9 @@
 import { Button, Flex, message, Table, Image, Popconfirm } from "antd";
 import { Link } from "react-router-dom";
-import { useDeleteData } from "../../Service/Mutation/useDeleteData";
 import { useQueryClient } from "@tanstack/react-query";
 import { BrandType, columnType } from "../../Types/data-types";
 import { useBrandGetType } from "../../Service/Query/useBrandGetType";
+import { useBrandDeleteData } from "../../Service/Mutation/useBrandDeleteData";
 
 export const BrandList = () => {
   const { data } = useBrandGetType();
@@ -17,7 +17,7 @@ export const BrandList = () => {
     };
   });
 
-  const { mutate } = useDeleteData();
+  const { mutate } = useBrandDeleteData();
 
   const client = useQueryClient();
   const DeleteCategory = (id: number) => {
@@ -29,7 +29,7 @@ export const BrandList = () => {
       onError: (error) => {
         console.log(error);
 
-        message.error("error");
+        message.error("Error occurred during delete");
       },
     });
   };
@@ -90,6 +90,8 @@ export const BrandList = () => {
           <div>
             <Popconfirm
               onConfirm={() => {
+                console.log(record.id);
+
                 return DeleteCategory(record.id);
               }}
               cancelText={"No"}
@@ -97,7 +99,6 @@ export const BrandList = () => {
               title={"Do you wish to continue with past date?"}
             >
               <Button
-                onClick={() => DeleteCategory(record.id)}
                 type="primary"
                 style={{ backgroundColor: "red", fontSize: "20px" }}
               >
