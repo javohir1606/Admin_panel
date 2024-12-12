@@ -6,10 +6,8 @@ import { useBrandGetType } from "../../Service/Query/useBrandGetType";
 import { useBrandDeleteData } from "../../Service/Mutation/useBrandDeleteData";
 
 export const BrandList = () => {
-  // Ma'lumotlarni olish
   const { data } = useBrandGetType();
 
-  // DataSourceni yaratish
   const dataSource = data?.results.map((item: BrandType) => ({
     key: item.id,
     id: item.id,
@@ -17,7 +15,6 @@ export const BrandList = () => {
     title: item.title,
   }));
 
-  // O'chirish funksiyasi
   const { mutate } = useBrandDeleteData();
   const client = useQueryClient();
 
@@ -34,7 +31,6 @@ export const BrandList = () => {
     });
   };
 
-  // Kolonkalarning konfiguratsiyasi
   const columns: columnType[] = [
     {
       title: "ID",
@@ -110,12 +106,10 @@ export const BrandList = () => {
   return (
     <div>
       <div style={{ marginBottom: "20px" }}>
-        {/* Yangi brend qo'shish uchun tugma */}
         <Link to="/app/create-brand">
           <Button type="primary">Create Brand</Button>
         </Link>
       </div>
-      {/* Jadvalni ko'rsatish */}
       <Table
         dataSource={dataSource}
         columns={columns}
