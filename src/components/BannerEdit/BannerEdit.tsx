@@ -4,14 +4,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FormDatas } from "../../Types/data-types";
 import { message, UploadFile } from "antd";
 import { AttributeForm } from "../Create-Attribute";
-import { useBrandCategory } from "../../Service/Mutation/useBrandEdit";
-import { useGetBrandData } from "../../Service/Query/useGerBerandData";
+import { useGetSingleBannerData } from "../../Service/Query/useGetSingleBannerData";
+import { useBannerCategory } from "../../Service/Mutation/useBannerEditCategory";
 
-export const BrandEdit = () => {
+export const BannerEdit = () => {
   const { id } = useParams();
-  const { data: singleData, isLoading } = useGetBrandData(id);
-
-  const { mutate } = useBrandCategory();
+  const { data: singleData, isLoading } = useGetSingleBannerData(id);
+  console.log(singleData);
+  
+  const { mutate } = useBannerCategory();
   const navigate = useNavigate();
 
   const submit = (data: FormDatas) => {

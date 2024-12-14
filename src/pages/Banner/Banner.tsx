@@ -1,21 +1,21 @@
 import { Button, Flex, message, Table, Image, Popconfirm } from "antd";
 import { Link } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
-import { BrandType, columnType } from "../../Types/data-types";
-import { useBrandGetType } from "../../Service/Query/useBrandGetType";
-import { useBrandDeleteData } from "../../Service/Mutation/useBrandDeleteData";
+import { BannerType, BrandType, columnType } from "../../Types/data-types";
+import { useBannerGetType } from "../../Service/Query/useGetbanner";
+import { useBannerDeleteData } from "../../Service/Mutation/useBannerDelete";
 
 export const Banner = () => {
-  const { data } = useBrandGetType();
+  const { data } = useBannerGetType();
 
-  const dataSource = data?.results.map((item: BrandType) => ({
+  const dataSource = data?.results.map((item: BannerType) => ({
     key: item.id,
     id: item.id,
     img: item.image,
     title: item.title,
   }));
 
-  const { mutate } = useBrandDeleteData();
+  const { mutate } = useBannerDeleteData();
   const client = useQueryClient();
 
   const DeleteCategory = (id: number) => {
@@ -50,7 +50,7 @@ export const Banner = () => {
               width: "70px",
             }}
             src={image}
-            alt="Brand"
+            alt="Banner"
           />
         </div>
       ),
@@ -74,7 +74,7 @@ export const Banner = () => {
       render: (_: any, record: BrandType) => (
         <Flex gap="20px" justify="center">
           <div>
-            <Link to={`/app/edit-brand/${record.id}`}>
+            <Link to={`/app/edit-banner/${record.id}`}>
               <Button
                 type="primary"
                 style={{ backgroundColor: "#048b04", fontSize: "20px" }}
@@ -106,8 +106,8 @@ export const Banner = () => {
   return (
     <div>
       <div style={{ marginBottom: "20px" }}>
-        <Link to="/app/create-brand">
-          <Button type="primary">Create Brand</Button>
+        <Link to="/app/create-banner">
+          <Button type="primary">Create Banner</Button>
         </Link>
       </div>
       <Table

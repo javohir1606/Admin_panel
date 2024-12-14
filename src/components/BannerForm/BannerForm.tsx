@@ -6,7 +6,7 @@ interface ReusableFormProps {
   form: any;
 }
 
-export const FromBrend: React.FC<ReusableFormProps> = ({ submit, form }) => {
+export const BannerForm: React.FC<ReusableFormProps> = ({ submit, form }) => {
   const [fileList, setFileList] = useState<any[]>([]);
 
   const handleFileChange = ({ fileList: newFileList }: any) => {
@@ -23,7 +23,6 @@ export const FromBrend: React.FC<ReusableFormProps> = ({ submit, form }) => {
 
   return (
     <>
-     
       <Form.Item
         style={{ width: "400px" }}
         label="Title"

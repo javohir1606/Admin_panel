@@ -59,6 +59,14 @@ export interface BrandType{
   image:string;
   title: string;
 }
+
+export interface BannerType{
+  id: number;
+  key:number;
+  image:string;
+  title: string;
+}
+
 export interface TabPropsTypes {
   key: string;
   label: string;

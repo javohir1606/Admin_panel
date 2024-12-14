@@ -28,7 +28,7 @@ export const data = [
   },
   {
     id: nanoid(),
-    label: "Banner",
+    label: "Banner-List",
     icon: ShopTwoTone,
     path: "/app/banner",
   },

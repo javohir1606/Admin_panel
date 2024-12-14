@@ -11,6 +11,8 @@ import { SubEditTab } from "../components/Sub-Edit-Tab";
 import { CreateBrandList } from "../components/Brand-creat";
 import { BrandEdit } from "../components/BrandEdit/BrandEdit";
 import { Banner } from "../pages/Banner";
+import { BannerEdit } from "../components/BannerEdit/BannerEdit";
+import { CreateBannerList } from "../components/Banner-creat/bannerCreat";
 
 interface RouteType {
   component: React.FC;
@@ -72,5 +74,15 @@ export const RoutersData: RouteType[] = [
     id: nanoid(),
     component: Banner,
     path: "/app/banner",
+  },
+  {
+    id: nanoid(),
+    component: BannerEdit,
+    path: "/app/edit-banner/:id",
+  },
+  {
+    id: nanoid(),
+    component: CreateBannerList,
+    path: "/app/create-banner",
   },
 ];
