@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { request } from "../../config/request.ts";
+import request from "../../config/request";
 
 export const useBannerDeleteData = () => {
   return useMutation({

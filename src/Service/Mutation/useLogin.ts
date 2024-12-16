@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
-import { request } from "../../Config/request";
+import request from "../../config/request";
 export const useLogin = () => {
   return useMutation({
     mutationFn: (data) =>

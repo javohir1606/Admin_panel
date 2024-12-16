@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { request } from "../../Config/request";
 import { AttrValue } from "../../Types/data-types";
+import request from "../../config/request";
 
 export const 
 useCreateAttribute = () => {

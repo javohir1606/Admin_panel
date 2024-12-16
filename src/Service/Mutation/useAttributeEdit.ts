@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { request } from "../../Config/request";
+import request from "../../config/request";
+// import { request } from "../../config/request";
 
 export const useAttributeEdit = () => {
   return useMutation({

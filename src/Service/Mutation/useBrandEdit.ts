@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useQueryClient } from "@tanstack/react-query";
-import { request } from "../../config/request";
+import request from "../../config/request";
 export const useBrandCategory = () => {
   const client = useQueryClient();
   return useMutation({

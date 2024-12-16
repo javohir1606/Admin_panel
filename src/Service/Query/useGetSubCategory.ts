@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { request } from "../../Config/request";
+import request from "../../config/request";
 
 export const useGetSubCategory = () => {
   return useQuery({

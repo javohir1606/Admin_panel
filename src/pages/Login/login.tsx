@@ -23,7 +23,7 @@ export const Login: React.FC = () => {
   const navigate = useNavigate();
   const { mutate } = useLogin();
 
-  const onSubmit = (data: useLoginType) => {
+  const onSubmit = (data: any) => {
     console.log("Submitting Data:", data);
 
     mutate(data, {
