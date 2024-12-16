@@ -1,4 +1,3 @@
-import { Image } from 'antd';
 import { RcFile } from "antd/es/upload";
 import React from "react";
 
